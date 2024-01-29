@@ -15,7 +15,7 @@ export const SearchForm = ({ onSearchButton, loading }: Props) => {
             <p className="mb-3 text-xl">Qual seu CPF?</p>
 
             <input type="text" inputMode="numeric" placeholder="Digite  seu Cpf"
-                className="w-full p-3 bg-white text-black text-center text-4xl"
+                className="w-full p-3 bg-white text-black text-center text-2xl"
                 autoFocus
                 value={inputCpf}
                 onChange={e => setinputCpf(escapeCpf(e.target.value))}
