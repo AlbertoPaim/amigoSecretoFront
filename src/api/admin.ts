@@ -29,3 +29,15 @@ export const getEvents = async () => {
 
 	} catch (error) { return [] }
 };
+
+export const deleteEvents = async (id: number) => {
+
+	const token = getCookie('token');
+
+	const json = await req.delete(`/admin/event/${id}`, {
+		headers: { 'Authorization': `Token ${token}` }
+	})
+
+	return !json.data.error;
+};
+

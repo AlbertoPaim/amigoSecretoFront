@@ -3,7 +3,7 @@
 import * as api from "@/api/admin"
 import { Event } from "@/types/Events"
 import { useEffect, useState } from "react"
-import { EventItemNotFound, EventItemPlaceHolder } from "./events/eventItem"
+import { EventItem, EventItemNotFound, EventItemPlaceHolder } from "./events/eventItem"
 import { ItemButton } from "./itemButton"
 import { FaPlus } from "react-icons/fa"
 
@@ -37,7 +37,11 @@ export const AdminPage = () => {
 			</div>
 			<div className="my-3">
 				{!loading && events.length > 0 && events.map(item => (
-					<div key={item.id}>{item.title}</div>
+					<EventItem
+						item={item}
+						refreshAction={loadEvents}
+						openModal={() => { }}
+					/>
 				))}
 
 				{!loading && events.length === 0 && <EventItemNotFound />}
