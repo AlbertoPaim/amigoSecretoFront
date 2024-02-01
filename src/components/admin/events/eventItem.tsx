@@ -2,6 +2,7 @@ import { Event } from "@/types/Events"
 import { ItemButton } from "../itemButton";
 import { FaLink, FaRegEdit, FaRegTrashAlt } from "react-icons/fa";
 import * as api from "@/api/admin"
+
 type Props = {
 	item: Event;
 	refreshAction: () => void;
@@ -15,6 +16,7 @@ export const EventItem = ({ item, refreshAction, openModal }: Props) => {
 	const handleDeleteButton = async () => {
 		if (confirm(`Tem certeza que deseja deletar o evento: ${item.title}`))
 			await api.deleteEvents(item.id)
+		refreshAction();
 	}
 
 	return (

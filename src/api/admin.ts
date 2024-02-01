@@ -25,9 +25,24 @@ export const getEvents = async () => {
 
 		return json.data.itens as Event[] ?? [];
 
-
-
 	} catch (error) { return [] }
+};
+
+type DataEvent = {
+	title: string;
+	description: string;
+	grouped: boolean;
+}
+
+export const createEvent = async (data: DataEvent): Promise<DataEvent | false> => {
+	try {
+		const token = getCookie('token');
+
+		const json = await req.post('/admin/event', data, { headers: { 'Authorization': `Token ${token}` } })
+
+		return json.data.event as DataEvent ?? false;
+
+	} catch (error) { return false }
 };
 
 export const deleteEvents = async (id: number) => {
