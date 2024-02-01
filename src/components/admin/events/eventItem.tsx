@@ -64,3 +64,4 @@ export const EventItemNotFound = () => {
 		<div className="text-center py-4">Não há eventos cadastrados</div>
 	)
 }
+

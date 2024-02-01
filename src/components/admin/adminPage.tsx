@@ -2,14 +2,17 @@
 
 import * as api from "@/api/admin"
 import { Event } from "@/types/Events"
-import { useEffect, useState } from "react"
+import { Children, useEffect, useState } from "react"
 import { EventItem, EventItemNotFound, EventItemPlaceHolder } from "./events/eventItem"
 import { ItemButton } from "./itemButton"
 import { FaPlus } from "react-icons/fa"
+import { ModalScreens } from "@/types/ModalScreens"
+import { Modal } from "./modal"
 
 export const AdminPage = () => {
 	const [events, setEvents] = useState<Event[]>([])
 	const [loading, setLoading] = useState(true);
+	const [modalScreem, setModalScreem] = useState<ModalScreens>(null);
 
 	const loadEvents = async () => {
 		setLoading(true)
@@ -31,7 +34,7 @@ export const AdminPage = () => {
 				<button>
 					<ItemButton
 						IconElement={FaPlus}
-						onClick={() => { }}
+						onClick={() => setModalScreem('add')}
 					/>
 				</button>
 			</div>
@@ -52,7 +55,15 @@ export const AdminPage = () => {
 						<EventItemPlaceHolder />
 					</>
 				}
+
 			</div>
+
+			{modalScreem && (
+				<Modal onClose={() => setModalScreem(null)}>
+					<p>tipo: {modalScreem}</p>
+				</Modal>
+			)}
+
 		</div>
 	)
 
